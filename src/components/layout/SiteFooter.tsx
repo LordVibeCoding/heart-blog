@@ -44,8 +44,19 @@ export function SiteFooter() {
       </Container>
 
       <div className="border-t border-border">
-        <Container className="flex h-12 items-center justify-between text-[11px] uppercase tracking-[0.16em] text-fg-subtle">
+        <Container className="flex min-h-12 flex-col items-center justify-between gap-1 py-3 text-[11px] uppercase tracking-[0.16em] text-fg-subtle md:flex-row md:py-0">
           <span>© {new Date().getFullYear()} {site.name}</span>
+          <span>
+            设计与开发由{" "}
+            <a
+              href={site.social.github}
+              target="_blank"
+              rel="noreferrer"
+              className="ring-focus rounded text-fg transition hover:text-accent"
+            >
+              LordVibeCoding
+            </a>
+          </span>
           <span>Built on Cloudflare</span>
         </Container>
       </div>

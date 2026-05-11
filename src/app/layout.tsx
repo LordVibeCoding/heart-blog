@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   authors: [{ name: site.author.name, url: site.author.url }],
+  keywords: [...site.keywords],
+  category: "technology",
   openGraph: {
     type: "website",
     locale: site.locale,

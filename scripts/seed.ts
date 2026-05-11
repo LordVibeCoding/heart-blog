@@ -7,11 +7,11 @@ sqlite.pragma("foreign_keys = ON");
 const db = drizzle(sqlite, { schema });
 
 const initialCategories = [
-  { slug: "tech", name: "科技", description: "代码、工具、行业观察", sortOrder: 1 },
-  { slug: "design", name: "设计", description: "视觉、交互、产品思考", sortOrder: 2 },
-  { slug: "life", name: "生活", description: "随笔、旅行、片段", sortOrder: 3 },
-  { slug: "reading", name: "阅读", description: "读书、摘抄、回响", sortOrder: 4 },
-  { slug: "tools", name: "工具", description: "效率、流程、自动化", sortOrder: 5 },
+  { slug: "ai", name: "AI", description: "Claude / GPT / Cursor / LLM 工程实践", sortOrder: 1 },
+  { slug: "coding", name: "编码笔记", description: "全栈、架构、调试、性能", sortOrder: 2 },
+  { slug: "overseas", name: "海外技术", description: "Telegram、Cloudflare、Vercel 与海外生态", sortOrder: 3 },
+  { slug: "tools", name: "工具", description: "效率、流程、自动化、生产力", sortOrder: 4 },
+  { slug: "notes", name: "随笔", description: "想法、阅读、片段记录", sortOrder: 5 },
 ];
 
 for (const c of initialCategories) {

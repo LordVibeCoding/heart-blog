@@ -1,0 +1,35 @@
+name = "lordvibecoding-blog"
+main = ".open-next/worker.js"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lordvibecoding-blog"
+database_id = "16a24950-0982-49fd-97c1-09785a39adda"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "lordvibecoding-blog-media"
+
+[vars]
+NEXT_PUBLIC_SITE_URL = "https://okl.la"
+NEXT_PUBLIC_SITE_NAME = "LordVibeCoding'blog"
+NEXT_PUBLIC_GISCUS_REPO = "LordVibeCoding/heart-blog"
+NEXT_PUBLIC_GISCUS_REPO_ID = "R_kgDOSaLFlw"
+NEXT_PUBLIC_GISCUS_CATEGORY = "General"
+NEXT_PUBLIC_GISCUS_CATEGORY_ID = "DIC_kwDOSaLFl84C8xoA"
+# R2 公开域名（启用 R2 后在 dashboard 配 custom domain，部署后更新此处）
+NEXT_PUBLIC_R2_PUBLIC_URL = "https://media.okl.la"
+
+# 这些字段在部署后通过 wrangler secret put 设置，不在配置文件
+# - ADMIN_USERNAME
+# - ADMIN_PASSWORD_ITER
+# - ADMIN_PASSWORD_SALT
+# - ADMIN_PASSWORD_HASH
+# - SESSION_SECRET
+
+[observability]
+enabled = true

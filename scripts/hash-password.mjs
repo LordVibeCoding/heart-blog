@@ -4,7 +4,7 @@
 
 import { webcrypto } from "node:crypto";
 
-const ITER = 200_000;
+const ITER = 100_000; // Cloudflare Workers PBKDF2 上限
 const KEY_LEN = 32;
 
 const password = process.argv[2];
