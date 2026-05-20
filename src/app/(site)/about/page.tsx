@@ -3,7 +3,7 @@ import { Github, Rss, Mail, Send, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { site } from "@/lib/site";
 
-const REPO_URL = "https://github.com/LordVibeCoding/heart-blog";
+const REPO_URL = "https://github.com/LordVibeCoding/serverless-cloudflare-blog";
 
 export const metadata: Metadata = {
   title: "关于",
@@ -39,7 +39,7 @@ export default function AboutPage() {
             <div className="min-w-0">
               <p className="eyebrow text-fg-subtle">Open Source</p>
               <p className="mt-3 font-sans text-xl font-bold tracking-tight">
-                LordVibeCoding / heart-blog
+                LordVibeCoding / serverless-cloudflare-blog
               </p>
               <p className="mt-2 text-sm text-fg-muted">
                 整个博客的源码完全开源（MIT），跑在 Cloudflare Workers + D1 + R2 上。欢迎 Star / Fork / 提 Issue。

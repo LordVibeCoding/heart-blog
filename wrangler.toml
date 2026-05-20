@@ -17,7 +17,7 @@ bucket_name = "lordvibecoding-blog-media"
 [vars]
 NEXT_PUBLIC_SITE_URL = "https://okl.la"
 NEXT_PUBLIC_SITE_NAME = "LordVibeCoding'blog"
-NEXT_PUBLIC_GISCUS_REPO = "LordVibeCoding/heart-blog"
+NEXT_PUBLIC_GISCUS_REPO = "LordVibeCoding/serverless-cloudflare-blog"
 NEXT_PUBLIC_GISCUS_REPO_ID = "R_kgDOSaLFlw"
 NEXT_PUBLIC_GISCUS_CATEGORY = "General"
 NEXT_PUBLIC_GISCUS_CATEGORY_ID = "DIC_kwDOSaLFl84C8xoA"

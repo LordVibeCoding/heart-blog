@@ -85,8 +85,8 @@
 ## 📦 快速开始
 
 ```bash
-git clone https://github.com/LordVibeCoding/heart-blog.git
-cd heart-blog
+git clone https://github.com/LordVibeCoding/serverless-cloudflare-blog.git
+cd serverless-cloudflare-blog
 pnpm install
 
 # 1. 生成管理员密码哈希 + Session secret

@@ -44,3 +44,5 @@ public/uploads/
 .data/
 .open-next/
 .wrangler/
+*.local.md
+SECRETS.*.md
