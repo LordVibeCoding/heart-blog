@@ -1,30 +1,29 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { requireAuthed } from "@/lib/auth";
-import { createCategory, listCategories } from "@/db/repo";
+import { requireAdmin } from "@/lib/auth";
+import { createApiToken, listApiTokens } from "@/lib/api-token";
 
 export const runtime = "nodejs";
 
 const createSchema = z.object({
-  slug: z.string().min(1).max(64).regex(/^[a-z0-9一-龥-]+$/),
   name: z.string().min(1).max(64),
-  description: z.string().max(200).optional(),
-  sortOrder: z.number().int().optional(),
 });
 
+/** 列出 token（只返回脱敏字段）。仅 cookie session 可访问。 */
 export async function GET() {
   try {
-    await requireAuthed();
+    await requireAdmin();
   } catch {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
-  const list = await listCategories();
+  const list = await listApiTokens();
   return NextResponse.json({ data: list });
 }
 
+/** 创建 token。返回的 token 明文只出现这一次，请妥善保存。 */
 export async function POST(req: Request) {
   try {
-    await requireAuthed();
+    await requireAdmin();
   } catch {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
@@ -33,11 +32,6 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return NextResponse.json({ error: "字段无效" }, { status: 400 });
   }
-  try {
-    await createCategory(parsed.data);
-    return NextResponse.json({ ok: true }, { status: 201 });
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : "创建失败";
-    return NextResponse.json({ error: msg }, { status: 400 });
-  }
+  const created = await createApiToken(parsed.data.name);
+  return NextResponse.json({ data: created }, { status: 201 });
 }

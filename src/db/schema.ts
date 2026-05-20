@@ -105,7 +105,39 @@ export const media = sqliteTable(
   }),
 );
 
+/** 站点级 key-value 设置 */
+export const settings = sqliteTable("settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .default(sql`(unixepoch() * 1000)`),
+});
+
+/** API Token：给自动化脚本 / AI Agent 用，按 token 粒度管理 */
+export const apiTokens = sqliteTable(
+  "api_tokens",
+  {
+    id: text("id").primaryKey(), // nanoid
+    name: text("name").notNull(),
+    /** sha256(token) hex，明文 token 只在创建时返回一次 */
+    tokenHash: text("token_hash").notNull(),
+    /** 前 8 字符明文前缀，用于列表识别 */
+    prefix: text("prefix").notNull(),
+    createdAt: integer("created_at", { mode: "timestamp_ms" })
+      .notNull()
+      .default(sql`(unixepoch() * 1000)`),
+    lastUsedAt: integer("last_used_at", { mode: "timestamp_ms" }),
+    revokedAt: integer("revoked_at", { mode: "timestamp_ms" }),
+  },
+  (t) => ({
+    hashUq: uniqueIndex("api_tokens_hash_uq").on(t.tokenHash),
+  }),
+);
+
 export type CategoryRow = typeof categories.$inferSelect;
 export type ArticleRow = typeof articles.$inferSelect;
 export type TagRow = typeof tags.$inferSelect;
 export type MediaRow = typeof media.$inferSelect;
+export type SettingRow = typeof settings.$inferSelect;
+export type ApiTokenRow = typeof apiTokens.$inferSelect;

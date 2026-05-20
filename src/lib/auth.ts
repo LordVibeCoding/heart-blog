@@ -1,10 +1,15 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getIronSession, type IronSession, type SessionOptions } from "iron-session";
+import { verifyBearerToken } from "./api-token";
 
 export type SessionData = {
   username?: string;
   loggedInAt?: number;
 };
+
+export type AdminPrincipal =
+  | { kind: "session"; username: string }
+  | { kind: "token"; tokenId: string; tokenName: string };
 
 const SESSION_COOKIE = "blog_session";
 
@@ -37,6 +42,23 @@ export async function requireAdmin(): Promise<IronSession<SessionData>> {
     throw new Error("UNAUTHORIZED");
   }
   return session;
+}
+
+/** 支持两种鉴权：cookie session（后台 UI）或 Bearer token（API）。 */
+export async function requireAuthed(): Promise<AdminPrincipal> {
+  // 1) cookie session
+  const session = await getSession();
+  if (session.username) {
+    return { kind: "session", username: session.username };
+  }
+  // 2) Bearer token
+  const hdrs = await headers();
+  const auth = hdrs.get("authorization");
+  const token = await verifyBearerToken(auth);
+  if (token) {
+    return { kind: "token", tokenId: token.id, tokenName: token.name };
+  }
+  throw new Error("UNAUTHORIZED");
 }
 
 /** PBKDF2 密码校验。env 用 3 个变量传：ADMIN_PASSWORD_ITER / SALT(b64) / HASH(b64) */

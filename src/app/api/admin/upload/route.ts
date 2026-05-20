@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { requireAdmin } from "@/lib/auth";
+import { requireAuthed } from "@/lib/auth";
 import { saveUpload } from "@/lib/upload";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
-    await requireAdmin();
+    await requireAuthed();
   } catch {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }

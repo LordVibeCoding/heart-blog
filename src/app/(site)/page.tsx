@@ -14,15 +14,24 @@ import {
   listFeatured,
   listRecent,
   listByCategory,
+  getSettings,
 } from "@/db/repo";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [featured, recent, categories] = await Promise.all([
+  const [featured, recent, categories, promoSettings] = await Promise.all([
     listFeatured(4),
     listRecent(20),
     listCategories(),
+    getSettings([
+      "promo_banner_image",
+      "promo_banner_eyebrow",
+      "promo_banner_title",
+      "promo_banner_description",
+      "promo_banner_cta_label",
+      "promo_banner_cta_href",
+    ]),
   ]);
 
   // 空数据时显示 placeholder
@@ -135,11 +144,17 @@ export default async function HomePage() {
       )}
 
       <PromoBanner
-        image="/images/promo.webp"
-        eyebrow="Follow"
-        title="想第一时间看到新文章？"
-        description="RSS 订阅没有算法，没有邮件营销。把这个站加进你的阅读器，不漏一篇。"
-        cta={{ href: "/rss.xml", label: "订阅 RSS" }}
+        image={promoSettings.promo_banner_image}
+        eyebrow={promoSettings.promo_banner_eyebrow || "Follow"}
+        title={promoSettings.promo_banner_title || "想第一时间看到新文章？"}
+        description={
+          promoSettings.promo_banner_description ||
+          "RSS 订阅没有算法，没有邮件营销。把这个站加进你的阅读器，不漏一篇。"
+        }
+        cta={{
+          href: promoSettings.promo_banner_cta_href || "/rss.xml",
+          label: promoSettings.promo_banner_cta_label || "订阅 RSS",
+        }}
       />
 
       {popular.length > 0 && (

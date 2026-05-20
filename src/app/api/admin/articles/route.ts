@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { requireAdmin } from "@/lib/auth";
+import { requireAuthed } from "@/lib/auth";
 import { createArticle, listAllArticlesAdmin } from "@/db/repo";
 import { site } from "@/lib/site";
 
@@ -22,7 +22,7 @@ const createSchema = z.object({
 
 export async function GET() {
   try {
-    await requireAdmin();
+    await requireAuthed();
   } catch {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
@@ -32,7 +32,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    await requireAdmin();
+    await requireAuthed();
   } catch {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }

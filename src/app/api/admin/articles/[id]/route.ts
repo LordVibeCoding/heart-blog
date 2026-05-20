@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { requireAdmin } from "@/lib/auth";
+import { requireAuthed } from "@/lib/auth";
 import { deleteArticle, updateArticle } from "@/db/repo";
 
 export const runtime = "nodejs";
@@ -26,7 +26,7 @@ export async function PATCH(
   ctx: { params: Promise<{ id: string }> },
 ) {
   try {
-    await requireAdmin();
+    await requireAuthed();
   } catch {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
@@ -62,7 +62,7 @@ export async function DELETE(
   ctx: { params: Promise<{ id: string }> },
 ) {
   try {
-    await requireAdmin();
+    await requireAuthed();
   } catch {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }

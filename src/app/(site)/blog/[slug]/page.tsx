@@ -26,8 +26,13 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const all = await listPublishedArticles();
-  return all.map((a) => ({ slug: a.slug }));
+  // 文章页是 force-dynamic 的；build 阶段 D1 可能未就绪，安全返回 [] 让 Next.js 按需渲染
+  try {
+    const all = await listPublishedArticles();
+    return all.map((a) => ({ slug: a.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

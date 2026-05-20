@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+const DEFAULT_BANNER_IMAGE = "/default-cover.svg";
+
 /**
  * 全宽暗底 Promo Banner：左图 + 右大号 CTA。模板的 image+title+button 横幅复刻。
  */
@@ -12,18 +14,19 @@ export function PromoBanner({
   description,
   cta,
 }: {
-  image: string;
+  image?: string | null;
   eyebrow: string;
   title: string;
   description: string;
   cta: { href: string; label: string };
 }) {
+  const src = image && image.trim() ? image : DEFAULT_BANNER_IMAGE;
   return (
     <section className="relative isolate overflow-hidden bg-[#0c0c0d] text-white">
       <div className="grid items-stretch md:grid-cols-2">
         <div className="relative aspect-[3/2] w-full md:aspect-auto md:min-h-[420px]">
           <Image
-            src={image}
+            src={src}
             alt=""
             fill
             sizes="(min-width: 768px) 50vw, 100vw"

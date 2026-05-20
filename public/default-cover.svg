@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="LordVibeCoding blog default cover">
+  <!-- 背景：纸张底色 -->
+  <rect width="1600" height="900" fill="#f5f5f3"/>
+
+  <!-- 顶部细线 -->
+  <rect x="0" y="0" width="1600" height="1.5" fill="#121212"/>
+  <!-- 底部细线 -->
+  <rect x="0" y="898.5" width="1600" height="1.5" fill="#121212"/>
+
+  <!-- 装饰：左上角 V 形 logo -->
+  <g transform="translate(64, 60)" fill="#121212">
+    <path d="M0 0 H51.85 L95.51 74.29 L51.85 148.57 H0 L43.65 74.29 Z"/>
+    <path d="M85.71 0 H117.55 L160 74.29 L117.55 148.57 H85.71 L128.16 74.29 Z" opacity="0.35"/>
+  </g>
+
+  <!-- 顶部 eyebrow -->
+  <text x="800" y="120" fill="#121212" font-family="'Instrument Sans', 'Helvetica Neue', system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" letter-spacing="6" text-anchor="middle" opacity="0.55">
+    EST. 2026 · AI · CODE · OVERSEAS
+  </text>
+
+  <!-- 主标题 -->
+  <text x="800" y="495" fill="#121212" font-family="'Instrument Sans', 'Helvetica Neue', system-ui, -apple-system, sans-serif" font-size="148" font-weight="700" letter-spacing="-3" text-anchor="middle">
+    LordVibeCoding<tspan fill="#999">&apos;</tspan>blog<tspan fill="#999">.</tspan>
+  </text>
+
+  <!-- 副标题 -->
+  <text x="800" y="565" fill="#555" font-family="'Roboto Slab', 'Georgia', serif" font-size="28" font-style="italic" text-anchor="middle">
+    想法、笔记、和值得分享的东西
+  </text>
+
+  <!-- 底部装饰条 -->
+  <g transform="translate(800, 760)">
+    <line x1="-120" y1="0" x2="-30" y2="0" stroke="#121212" stroke-width="1.5"/>
+    <text x="0" y="6" fill="#121212" font-family="'Instrument Sans', system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="3" text-anchor="middle">OKL.LA</text>
+    <line x1="30" y1="0" x2="120" y2="0" stroke="#121212" stroke-width="1.5"/>
+  </g>
+
+  <!-- 右下角小标签 -->
+  <text x="1536" y="848" fill="#999" font-family="'Instrument Sans', system-ui, sans-serif" font-size="13" font-weight="500" letter-spacing="3" text-anchor="end">
+    BUILT ON CLOUDFLARE
+  </text>
+</svg>

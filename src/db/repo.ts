@@ -1,9 +1,11 @@
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import { getDb } from "./client";
-import { articles, articleTags, categories, media, tags } from "./schema";
+import { articles, articleTags, categories, media, settings, tags } from "./schema";
 import { extractExcerpt, extractFirstImage } from "@/lib/content";
 import type { Article as ArticleVO, Category as CategoryVO } from "@/data/types";
+
+const DEFAULT_COVER = "/default-cover.svg";
 
 /* ---------- 转换：DB row → 前端 VO ---------- */
 
@@ -39,7 +41,7 @@ async function rowToVO(row: ArticleRow): Promise<ArticleVO> {
     slug: row.slug,
     title: row.title,
     excerpt: row.excerpt,
-    cover: row.cover ?? "",
+    cover: row.cover && row.cover.trim() ? row.cover : DEFAULT_COVER,
     coverAlt: row.coverAlt ?? undefined,
     category: cat
       ? toCategoryVO(cat)
@@ -417,4 +419,38 @@ export async function recordMedia(input: {
 export async function deleteMedia(key: string) {
   const db = await getDb();
   await db.delete(media).where(eq(media.key, key));
+}
+
+/* ---------- Settings (key-value) ---------- */
+
+/** 全部设置一次读完返回 map（settings 行很少，全表无开销）。 */
+export async function getAllSettings(): Promise<Record<string, string>> {
+  const db = await getDb();
+  const rows = await db.select().from(settings);
+  return Object.fromEntries(rows.map((r) => [r.key, r.value]));
+}
+
+export async function getSetting(key: string): Promise<string | null> {
+  const all = await getAllSettings();
+  return all[key] ?? null;
+}
+
+export async function getSettings(keys: string[]): Promise<Record<string, string>> {
+  if (keys.length === 0) return {};
+  const all = await getAllSettings();
+  const out: Record<string, string> = {};
+  for (const k of keys) if (all[k] !== undefined) out[k] = all[k];
+  return out;
+}
+
+export async function setSetting(key: string, value: string) {
+  const db = await getDb();
+  const now = new Date();
+  await db
+    .insert(settings)
+    .values({ key, value, updatedAt: now })
+    .onConflictDoUpdate({
+      target: settings.key,
+      set: { value, updatedAt: now },
+    });
 }

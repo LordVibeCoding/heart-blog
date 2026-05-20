@@ -38,7 +38,10 @@ async function tryGetD1(): Promise<D1Database | null> {
   try {
     const mod = await import("@opennextjs/cloudflare").catch(() => null);
     if (!mod || typeof mod.getCloudflareContext !== "function") return null;
-    const ctx = mod.getCloudflareContext();
+    // OpenNext 1.x：RSC / server context 需要 async 获取 binding
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const getCtx = mod.getCloudflareContext as any;
+    const ctx = await getCtx({ async: true });
     return (ctx.env as { DB?: D1Database }).DB ?? null;
   } catch {
     return null;

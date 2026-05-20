@@ -45,9 +45,10 @@
     @apply bg-bg text-fg font-sans;
   }
 
+  /* 半透明灰：在任何底色（浅 / 深 / 文章正文 / banner）上都可读 */
   ::selection {
-    background: var(--fg);
-    color: var(--bg);
+    background: rgba(150, 150, 150, 0.4);
+    color: inherit;
   }
 
   a {
@@ -64,8 +65,9 @@
   .post-title .highlight {
     @apply text-fg;
   }
+  /* hover 用银色：在黑/白底都可读，不被同色背景吞掉 */
   .post-title:hover .highlight {
-    @apply text-accent;
+    color: #c0c0c0;
   }
 
   .eyebrow {

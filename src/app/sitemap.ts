@@ -2,12 +2,14 @@ import type { MetadataRoute } from "next";
 import { listCategories, listPublishedArticles } from "@/db/repo";
 import { site } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = site.url.replace(/\/$/, "");
   const now = new Date();
   const [articles, categories] = await Promise.all([
-    listPublishedArticles(),
-    listCategories(),
+    listPublishedArticles().catch(() => []),
+    listCategories().catch(() => []),
   ]);
 
   const staticEntries: MetadataRoute.Sitemap = [

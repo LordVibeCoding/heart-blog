@@ -31,8 +31,23 @@ export function SiteFooter() {
             </a>
           </li>
           <li>
-            <a href={site.social.github} className="hover:text-fg">
+            <a
+              href={site.social.github}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-fg"
+            >
               GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href={site.social.telegram}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-fg"
+            >
+              Telegram
             </a>
           </li>
           <li>

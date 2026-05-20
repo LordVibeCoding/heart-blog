@@ -34,7 +34,8 @@ export default async function ProtectedAdminLayout({
             <AdminNavItem href="/admin">仪表板</AdminNavItem>
             <AdminNavItem href="/admin/articles">文章</AdminNavItem>
             <AdminNavItem href="/admin/categories">分类</AdminNavItem>
-            <AdminNavItem href="/admin/media">图片</AdminNavItem>
+            <AdminNavItem href="/admin/api-tokens">API Tokens</AdminNavItem>
+            <AdminNavItem href="/admin/settings">站点设置</AdminNavItem>
           </ul>
         </nav>
         <div className="border-t border-border p-4">

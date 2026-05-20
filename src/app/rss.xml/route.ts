@@ -1,6 +1,8 @@
 import { listPublishedArticles } from "@/db/repo";
 import { site } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
@@ -17,7 +19,7 @@ function escapeXml(unsafe: string): string {
 export async function GET() {
   const base = site.url.replace(/\/$/, "");
   const buildDate = new Date().toUTCString();
-  const articles = await listPublishedArticles();
+  const articles = await listPublishedArticles().catch(() => []);
 
   const items = articles
     .map((a) => `
