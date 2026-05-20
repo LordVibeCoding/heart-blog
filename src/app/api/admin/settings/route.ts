@@ -12,6 +12,7 @@ const ALLOWED_KEYS = new Set([
   "site_tagline",
   "site_description",
   "site_keywords",
+  "site_favicon",
   // 作者
   "site_author_name",
   "site_author_email",

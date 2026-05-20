@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: "/",
       types: { "application/rss+xml": "/rss.xml" },
     },
-    icons: { icon: "/favicon.ico" },
+    icons: { icon: c.favicon },
   };
 }
 

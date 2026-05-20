@@ -113,6 +113,37 @@ export function SettingsForm({
             className={fieldCls}
           />
         </Field>
+        <Field label="Favicon（标签页图标，建议 SVG / PNG / ICO）">
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={form.site_favicon}
+              onChange={(e) => set("site_favicon", e.target.value)}
+              placeholder={defaults.site_favicon}
+              className={fieldCls}
+            />
+            <label className="ring-focus inline-flex cursor-pointer items-center border border-border-strong px-4 py-2.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-fg-muted transition hover:border-fg hover:text-fg">
+              上传
+              <input
+                type="file"
+                accept="image/svg+xml,image/png,image/x-icon,image/jpeg,image/webp"
+                onChange={(e) => uploadCover(e, "site_favicon")}
+                hidden
+              />
+            </label>
+          </div>
+          {form.site_favicon && (
+            <div className="mt-3 inline-flex items-center gap-3 border border-border bg-bg-subtle px-3 py-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={form.site_favicon}
+                alt="favicon preview"
+                className="h-8 w-8 object-contain"
+              />
+              <span className="text-xs text-fg-muted">预览（实际显示为 16/32px）</span>
+            </div>
+          )}
+        </Field>
       </Section>
 
       <Section title="作者信息" desc="出现在 footer / 关于页 / Article schema">

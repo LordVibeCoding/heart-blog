@@ -17,6 +17,7 @@ export default async function SettingsPage() {
     site_tagline: site.tagline,
     site_description: site.description,
     site_keywords: site.keywords.join(", "),
+    site_favicon: "/favicon.svg",
     site_author_name: site.author.name,
     site_author_email: site.author.email,
     site_social_github: site.social.github,

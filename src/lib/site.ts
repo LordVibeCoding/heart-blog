@@ -44,6 +44,7 @@ export const SITE_SETTING_KEYS = [
   "site_tagline",
   "site_description",
   "site_keywords",
+  "site_favicon",
   "site_author_name",
   "site_author_email",
   "site_social_github",
@@ -64,6 +65,7 @@ export type ResolvedSite = {
   tagline: string;
   description: string;
   keywords: string[];
+  favicon: string;
   url: string;
   locale: string;
   author: { name: string; email: string; url: string };
@@ -92,6 +94,7 @@ export async function getSiteConfig(): Promise<ResolvedSite> {
     tagline: s.site_tagline?.trim() || site.tagline,
     description: s.site_description?.trim() || site.description,
     keywords: pickKeywords(s.site_keywords),
+    favicon: s.site_favicon?.trim() || "/favicon.svg",
     url: site.url,
     locale: site.locale,
     author: {
