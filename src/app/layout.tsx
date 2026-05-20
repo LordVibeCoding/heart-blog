@@ -1,42 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { site } from "@/lib/site";
+import { site, getSiteConfig } from "@/lib/site";
 import { siteJsonLd } from "@/lib/seo";
 import { instrumentSans, robotoSlab } from "@/lib/fonts";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s · ${site.name}`,
-  },
-  description: site.description,
-  applicationName: site.name,
-  authors: [{ name: site.author.name, url: site.author.url }],
-  keywords: [...site.keywords],
-  category: "technology",
-  openGraph: {
-    type: "website",
-    locale: site.locale,
-    siteName: site.name,
-    title: site.name,
-    description: site.description,
-    url: site.url,
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: site.social.twitter,
-    creator: site.social.twitter,
-  },
-  alternates: {
-    canonical: "/",
-    types: {
-      "application/rss+xml": "/rss.xml",
+export async function generateMetadata(): Promise<Metadata> {
+  const c = await getSiteConfig();
+  return {
+    metadataBase: new URL(c.url),
+    title: {
+      default: `${c.name} — ${c.tagline}`,
+      template: `%s · ${c.name}`,
     },
-  },
-  icons: { icon: "/favicon.ico" },
-};
+    description: c.description,
+    applicationName: c.name,
+    authors: [{ name: c.author.name, url: c.author.url }],
+    keywords: c.keywords,
+    category: "technology",
+    openGraph: {
+      type: "website",
+      locale: c.locale,
+      siteName: c.name,
+      title: c.name,
+      description: c.description,
+      url: c.url,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: c.social.twitter,
+      creator: c.social.twitter,
+    },
+    alternates: {
+      canonical: "/",
+      types: { "application/rss+xml": "/rss.xml" },
+    },
+    icons: { icon: "/favicon.ico" },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: [

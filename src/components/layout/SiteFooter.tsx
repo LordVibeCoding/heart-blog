@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Container } from "./Container";
-import { site } from "@/lib/site";
+import { getSiteConfig } from "@/lib/site";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const site = await getSiteConfig();
   return (
     <footer className="mt-24 border-t border-border bg-bg">
       <Container className="grid gap-10 py-16 md:grid-cols-4">

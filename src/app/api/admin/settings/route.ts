@@ -6,6 +6,20 @@ import { setSetting } from "@/db/repo";
 export const runtime = "nodejs";
 
 const ALLOWED_KEYS = new Set([
+  // 站点基础
+  "site_name",
+  "site_short_name",
+  "site_tagline",
+  "site_description",
+  "site_keywords",
+  // 作者
+  "site_author_name",
+  "site_author_email",
+  // 社交
+  "site_social_github",
+  "site_social_telegram",
+  "site_social_twitter",
+  // Promo Banner
   "promo_banner_image",
   "promo_banner_eyebrow",
   "promo_banner_title",

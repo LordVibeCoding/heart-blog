@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import { Github, Rss, Mail, Send, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
-import { site } from "@/lib/site";
+import { getSiteConfig } from "@/lib/site";
 
 const REPO_URL = "https://github.com/LordVibeCoding/serverless-cloudflare-blog";
 
-export const metadata: Metadata = {
-  title: "关于",
-  description: `关于 ${site.name}：${site.tagline}`,
-  alternates: { canonical: "/about" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const c = await getSiteConfig();
+  return {
+    title: "关于",
+    description: `关于 ${c.name}：${c.tagline}`,
+    alternates: { canonical: "/about" },
+  };
+}
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const site = await getSiteConfig();
   return (
     <>
       <div className="divider-rule" />

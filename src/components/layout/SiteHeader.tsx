@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Container } from "./Container";
-import { site } from "@/lib/site";
+import { getSiteConfig } from "@/lib/site";
 import { ThemeToggle } from "./ThemeToggle";
 import { SearchTrigger } from "@/components/search/SearchTrigger";
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const site = await getSiteConfig();
   return (
     <header>
       {/* 顶部日期带（杂志报头气质） */}
