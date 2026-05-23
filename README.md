@@ -158,3 +158,7 @@ MIT。fork / 改名 / 商用都行，不需要署名（虽然我看到了会很�
 ## 一个具体的请求
 
 如果你 fork 之后做了你自己的版本，欢迎在 [Discussions](https://github.com/LordVibeCoding/serverless-cloudflare-blog/discussions) 里贴一下你的站，我想看看大家用同一套底子各自怎么改的。
+
+---
+
+社区：[LinuxDo](https://linux.do)
