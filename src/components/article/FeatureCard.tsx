@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { ArrowUpRight } from "lucide-react";
 import { CategoryPill } from "@/components/ui/CategoryPill";
 import { ArticleMeta } from "./ArticleMeta";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { ArrowRight, Github, Rss } from "lucide-react";
 import { site } from "@/lib/site";
 import { ArticleCard } from "@/components/article/ArticleCard";

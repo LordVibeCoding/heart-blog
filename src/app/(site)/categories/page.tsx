@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Container } from "@/components/layout/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { listCategories, listByCategory } from "@/db/repo";

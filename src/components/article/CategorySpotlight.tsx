@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { ArticleCard } from "./ArticleCard";
 import type { Article, Category } from "@/data/types";
 

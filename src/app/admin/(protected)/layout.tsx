@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getSession } from "@/lib/auth";
 
 export const metadata: Metadata = {

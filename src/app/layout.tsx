@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ViewTransitions } from "next-view-transitions";
 import { site, getSiteConfig } from "@/lib/site";
 import { siteJsonLd } from "@/lib/seo";
 import { instrumentSans, robotoSlab } from "@/lib/fonts";
@@ -53,17 +54,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang={site.locale}
-      className={`${instrumentSans.variable} ${robotoSlab.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        <link rel="preconnect" href="https://giscus.app" crossOrigin="" />
-        <link rel="dns-prefetch" href="https://giscus.app" />
-        <JsonLd data={siteJsonLd()} />
-      </head>
-      <body className="min-h-dvh antialiased">{children}</body>
-    </html>
+    <ViewTransitions>
+      <html
+        lang={site.locale}
+        className={`${instrumentSans.variable} ${robotoSlab.variable}`}
+        suppressHydrationWarning
+      >
+        <head>
+          <link rel="preconnect" href="https://giscus.app" crossOrigin="" />
+          <link rel="dns-prefetch" href="https://giscus.app" />
+          <JsonLd data={siteJsonLd()} />
+        </head>
+        <body className="min-h-dvh antialiased">{children}</body>
+      </html>
+    </ViewTransitions>
   );
 }

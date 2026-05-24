@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { ArticleCard } from "@/components/article/ArticleCard";

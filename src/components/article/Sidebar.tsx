@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Rss, Github, ArrowRight } from "lucide-react";
 import { listCategories, listRecent, getAllTags } from "@/db/repo";
 import { ArticleCard } from "./ArticleCard";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Container } from "@/components/layout/Container";
 import { InfiniteArticleList } from "@/components/article/InfiniteArticleList";
 import { Sidebar } from "@/components/article/Sidebar";

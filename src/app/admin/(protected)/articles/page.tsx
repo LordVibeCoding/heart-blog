@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Plus } from "lucide-react";
 import { listAllArticlesAdmin, listCategories } from "@/db/repo";
 import { ArticleRowActions } from "./_actions";

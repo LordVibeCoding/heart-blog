@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getSession } from "@/lib/auth";
 
 export default async function AdminDashboard() {

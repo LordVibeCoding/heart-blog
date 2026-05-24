@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Keyboard, Navigation, Pagination } from "swiper/modules";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
